@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {Card, CardImg, CardBlock, CardText, CardBody, CardTitle} from 'reactstrap';
+import {Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
 
 
 class DishDetail extends Component{
 
     renderDish(dish){
+        if (dish && dish !== null) {
         return(
+        <div className='col-12 col-md-5 m-1'>
         <Card>
         <CardImg width='100%' src={dish.image} alt={dish.name} />
           <CardBody>
@@ -13,7 +15,11 @@ class DishDetail extends Component{
           <CardText>{dish.description}</CardText>
           </CardBody>
         </Card>
+        </div>
         );
+        } else {
+            return <div></div>
+        }
     }
 
     fixDate(date){
@@ -23,37 +29,43 @@ class DishDetail extends Component{
         
     }
     renderComments(comments){
+        if (comments && comments !== null) {
         return (
+            <div className='col-12 col-md-5 m-1'>
             <Card>
-            <ul className='unstyled-list'>
+            <ul className='list-unstyled'>
             <h4>Comments</h4>
             {comments.map((comment) => (
                 <li>
                 <div key={comment.id}>
                 <p>{comment.comment}</p>
-                <p> --{comment.author}, {this.fixDate(comment.date)}</p>
+                <p> --{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
                 </div>
                 </li>
             ))}
             </ul>
             </Card>
+            </div>
         );
+            } else {
+                return <div></div>;
+            }
     }
     render(){
 
-    
+    if (this.props.dish) {
     return(
-    <div>
-        <div className='col-12 md-col-5 m-1'>
+    <div className='container'>
+        <div className='row'>
         {this.renderDish(this.props.dish)}
-        </div>
-        <div className='col-12 md-col-5 m-1'>
         {this.renderComments(this.props.dish.comments)}
         </div>
     </div>
     )
+    } else {
+        return <div></div>;
     }
-
+    }
 }
 
 
