@@ -25,11 +25,10 @@ const minLength = (len) => (val) => val && val.length >= len;
         }
     }
 
-    function RenderComments({comments}){
+    function RenderComments({comments, addComment, dishId}){
         if (comments && comments !== null) {
         return (
             <div className='col-12 col-md-5 m-1'>
-            <Card>
             <ul className='list-unstyled'>
             <h4>Comments</h4>
             {comments.map((comment) => (
@@ -39,8 +38,9 @@ const minLength = (len) => (val) => val && val.length >= len;
                 </li>
             ))}
             </ul>
-            <CommentForm />
-            </Card>
+            <CommentForm dishId={dishId}
+                addComment={addComment}
+                />
             </div>
         );
             } else {
@@ -54,7 +54,7 @@ const minLength = (len) => (val) => val && val.length >= len;
             super(props)
 
         this.toggleModal = this.toggleModal.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
             this.state = {
                 isNavOpen: false,
@@ -68,10 +68,9 @@ const minLength = (len) => (val) => val && val.length >= len;
             });
         }
 
-        onSubmit(values) {
+        handleSubmit(values) {
             this.toggleModal();
-            console.log(this.props.dishId, values.rating, values.comment)
-            alert('current state: ' + JSON.stringify(values))
+            this.props.addComment(this.props.dishId, values.rating, values.author, values.comment)
         }
 
         render() {
@@ -81,7 +80,7 @@ const minLength = (len) => (val) => val && val.length >= len;
                     <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
-                        <LocalForm onSubmit={(values) => this.onSubmit(values)}>
+                        <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group">
                                 <Col>
                                 <Label htmlFor="rating">Rating</Label>
@@ -153,16 +152,13 @@ const minLength = (len) => (val) => val && val.length >= len;
                 </Breadcrumb>
                 <div className="col-12">
                     <h3>{props.dish.name}</h3>
-                    <hr />
                 </div>                
             </div>
             <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    <RenderDish dish={props.dish} />
-                </div>
-                <div className="col-12 col-md-5 m-1">
-                    <RenderComments comments={props.comments} />
-                </div>
+                <RenderDish dish={props.dish} />
+                <RenderComments comments={props.comments}
+                    addComment={props.addComment}
+                    dishId={props.dish.id} />
             </div>
             </div>
         );
