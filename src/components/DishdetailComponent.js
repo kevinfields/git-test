@@ -4,6 +4,7 @@ import {Control, LocalForm, Errors} from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import {Link} from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
+import {FadeTransform, Fade, Stagger} from 'react-animation-components';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
@@ -13,6 +14,10 @@ const minLength = (len) => (val) => val && val.length >= len;
         if (dish && dish != null) {
         return(
         <div className='col-12 col-md-5 m-1'>
+        <FadeTransform in
+        transformProps={{
+            exitTransform: 'scale(0.5) translateY(-50%)'
+        }}>
         <Card>
         <CardImg top src={baseUrl + dish.image} alt={dish.name} />
           <CardBody>
@@ -20,6 +25,7 @@ const minLength = (len) => (val) => val && val.length >= len;
           <CardText>{dish.description}</CardText>
           </CardBody>
         </Card>
+        </FadeTransform>
         </div>
         );
         } else {
@@ -32,13 +38,17 @@ const minLength = (len) => (val) => val && val.length >= len;
         return (
             <div className='col-12 col-md-5 m-1'>
             <ul className='list-unstyled'>
-            <h4>Comments</h4>
-            {comments.map((comment) => (
-                <li key={comment.id}>
-                <p>{comment.comment}</p>
-                <p> --{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
-                </li>
-            ))}
+                <Stagger in>
+                    <h4>Comments</h4>
+                    {comments.map((comment) => (
+                        <Fade in>
+                            <li key={comment.id}>
+                                <p>{comment.comment}</p>
+                                <p> --{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                            </li>
+                        </Fade>
+                    ))}
+                </Stagger>
             </ul>
             <CommentForm dishId={dishId}
                 postComment={postComment}
