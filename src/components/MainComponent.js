@@ -5,10 +5,11 @@ import Footer from './FooterComponent';
 import Menu from './MenuComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
+import NewDish from './NewdishComponent'
 import DishDetail from './DishdetailComponent';
 import {Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders, postFeedback } from '../redux/ActionCreators';
+import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders, postFeedback, postDish } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form'
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
@@ -25,10 +26,12 @@ const mapDispatchToProps = dispatch => ({
   postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
   fetchDishes: () => { dispatch(fetchDishes())},
   resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
+  resetDishForm: () => { dispatch(actions.reset('dish'))},
   fetchComments: () => dispatch(fetchComments()),
   fetchPromos: () => dispatch(fetchPromos()),
   fetchLeaders: () => dispatch(fetchLeaders()),
   postFeedback: (data) => dispatch(postFeedback(data)),
+  postDish: (dish) => dispatch(postDish(dish)),
 });
 
 class Main extends Component {
@@ -81,6 +84,7 @@ class Main extends Component {
                 <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
                 <Route path='/menu/:dishId' component={DishWithId} />
                 <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} postFeedback={this.props.postFeedback}/> } />
+                <Route exact path='/add-dish' component={() => <NewDish resetDishForm={this.props.resetDishForm} postDish={this.props.postDish} /> } />
                 <Redirect to='/home' />
                 <Home />
               </Switch>

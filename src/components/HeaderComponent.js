@@ -72,6 +72,12 @@ class Header extends Component {
                                 </span> Contact Us
                             </NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink className='nav-link' to='/add-dish'>
+                                <span className='fa fa-solid fa-plus'>
+                                </span> Add Dish
+                            </NavLink>
+                        </NavItem>
                     </Nav>
                     <Nav className='ml-auto' navbar>
                         <NavItem>

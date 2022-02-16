@@ -1,10 +1,52 @@
 import * as ActionTypes from './ActionTypes';
+import { DISHES } from '../shared/dishes';
 import { baseUrl } from '../shared/baseUrl';
 
 export const addComment = (comment) => ({
     type: ActionTypes.ADD_COMMENT,
     payload: comment
 });
+
+// export const postDish = (dishName, dishImage, dishCategory, dishLabel, dishPrice, dishFeatured, dishDescription) => (dispatch) => {
+    
+//     const newDish = {
+//         id: DISHES.length,
+//         name: dishName,
+//         image: dishImage,
+//         category: dishCategory,
+//         label: dishLabel,
+//         price: dishPrice,
+//         featured: dishFeatured,
+//         description: dishDescription,
+//     }
+    
+//     return fetch(baseUrl + 'dishes', {
+//         method: 'POST',
+//         body: JSON.stringify(newDish),
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         credentials: 'same-origin'
+//     })
+//     .then(response => {
+//         if (response.ok) {
+//             return response;
+//         } else {
+//             var error = new Error('Error ' + response.status + ': ' + response.statusText);
+//             error.response = response;
+//             throw error;
+//         }    
+//     }, error => {
+//         var errmess = new Error(error.message);
+//         throw errmess;
+//     })
+//     .then(response => response.json())
+//     .then(response => dispatch(addDish(response)))
+//     .catch(error => {
+//         console.log('Post Dish: ' + error.message)
+//         alert('Your dish could not be posted\nError: ' + error.message)
+//     })
+// }
 
 export const postComment = (dishId, rating, comment, author) => (dispatch) => {
     
@@ -72,11 +114,17 @@ export const dishesFailed = (errmess) => ({
     type: ActionTypes.DISHES_FAILED,
     payload: errmess
 })
+export const addDish = (dish) => ({
+    type: ActionTypes.ADD_DISH,
+    payload: dish
+});
 
 export const addDishes = (dishes) => ({
     type: ActionTypes.ADD_DISHES,
     payload: dishes
 })
+
+
 
 export const fetchComments = () => (dispatch) => {    
     
@@ -213,3 +261,32 @@ export const postFeedback = (feedback) => () => {
         alert('Your feedback could not be posted\nError: ' + error.message); 
     });
 };
+
+export const postDish = (dishData) => (dispatch) => {
+    return fetch(baseUrl + 'dishes', {
+        method: "POST",
+        body: JSON.stringify(dishData),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+    .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error('Error ' + response.status + ': ' + response.statusText);
+          error.response = response;
+          throw error;
+        }
+      },
+      error => {
+            throw error;
+      })
+    .then(response => response.json())
+    .then(response => dispatch(addDish(response)))
+    .catch(error =>  { 
+        console.log('Dish ', error.message); 
+        alert('Your dish could not be posted\nError: ' + error.message); 
+    });
+}
