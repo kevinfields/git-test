@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {useState} from 'react';
 import {Breadcrumb, BreadcrumbItem, Button, Label, Col, Row} from 'reactstrap';
 import {Link} from 'react-router-dom';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 import { DISHES } from '../shared/dishes';
 
 const required = (val) => val && val.length;
@@ -20,7 +20,7 @@ class NewDish extends Component {
         console.log('Current state is: ' + JSON.stringify(details));
 
         const newDish = {
-            id: DISHES.length,
+            id: DISHES.length + 1,
             name: details.dishname,
             image: '/images/cereal.png',
             category: details.category,
@@ -37,50 +37,9 @@ class NewDish extends Component {
     render() {
         return (
             <div id='form-container' className='col-12 col-md-9'>
-                <form onSubmit={(values) => this.handleSubmit(values)}>
-                    <input type='text'
-                        value={details.name}
-                        onChange={(e) => setDetails({
-                            ...details, name: e.target.value
-                        })}
-                        />
-                    <input type='text'
-                        value={details.image}
-                        onChange={(e) => setDetails({
-                            ...details, image: e.target.value
-                        })}
-                        />
-                    <input type='text'
-                        value={details.category}
-                        onChange={(e) => setDetails({
-                            ...details, category: e.target.value
-                        })}
-                        />
-                    <input type='text'
-                        value={details.label}
-                        onChange={(e) => setDetails({
-                            ...details, label: e.target.value
-                        })}
-                        />
-                    <input type='number'
-                        value={details.price}
-                        onChange={(e) => setDetails({
-                            ...details, price: e.target.value
-                        })}
-                        />
-                    <input type='checkbox'
-                        value={details.featured}
-                        onChange={(e) => setDetails({
-                            ...details, featured: e.target.value
-                        })}
-                        />
-                    <input type='text'
-                        value={details.description}
-                        onChange={(e) => setDetails({
-                            ...details, description: e.target.value
-                        })}
-                        />
-                </form>
+                <Form onSubmit={() => this.handleSubmit()}>
+
+                </Form>
             </div>
         )
     }
