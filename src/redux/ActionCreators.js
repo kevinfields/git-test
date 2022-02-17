@@ -1,5 +1,4 @@
 import * as ActionTypes from './ActionTypes';
-import { DISHES } from '../shared/dishes';
 import { baseUrl } from '../shared/baseUrl';
 
 export const addComment = (comment) => ({
@@ -263,6 +262,8 @@ export const postFeedback = (feedback) => () => {
 };
 
 export const postDish = (dishData) => (dispatch) => {
+
+    console.log('dishData: ' + dishData)
     return fetch(baseUrl + 'dishes', {
         method: "POST",
         body: JSON.stringify(dishData),
@@ -290,3 +291,10 @@ export const postDish = (dishData) => (dispatch) => {
         alert('Your dish could not be posted\nError: ' + error.message); 
     });
 }
+
+//TO DO : EDIT DISH, MAYBE EDIT LEADERS, AND EDIT COMMENTS
+
+// export const editDish = (newData) => (dispatch) => {
+
+// }
+
