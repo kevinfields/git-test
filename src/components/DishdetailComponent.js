@@ -3,6 +3,7 @@ import {Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem
 import {Control, LocalForm, Errors} from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import {Link} from 'react-router-dom';
+import toPrice from '../functions/toPrice';
 import { baseUrl } from '../shared/baseUrl';
 import {FadeTransform, Fade, Stagger} from 'react-animation-components';
 
@@ -180,7 +181,7 @@ const minLength = (len) => (val) => val && val.length >= len;
                         <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
                     </Breadcrumb>
                     <div className="col-12">
-                        <h3>{props.dish.name}</h3>
+                        <h3>{props.dish.name}{' - '}{toPrice(props.dish.price)}</h3>
                     </div>                
                 </div>
                 <div className="row">

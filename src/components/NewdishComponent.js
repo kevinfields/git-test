@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import {Button} from 'reactstrap';
 // import {useState} from 'react';
-// import {Breadcrumb, BreadcrumbItem, Label, Col, Row} from 'reactstrap';
+import {Breadcrumb, BreadcrumbItem, Label, Col, Row} from 'reactstrap';
 // import {Link} from 'react-router-dom';
 // import { DISHES } from '../shared/dishes';
 
@@ -39,8 +39,11 @@ class NewDish extends Component {
 
     render() {
         return (
-            <div id='form-container' className='col-12 col-md-9'>
+            <div id='form-container' className='col-12 col-md-5'>
                 <LocalForm onSubmit={(details) => this.handleSubmit(details)}>
+                    <Row className='form-group'>
+                    <Col>
+                    <Label htmlFor='dishname'>Dish Name</Label>
                     <Control.text 
                     model='.dishname' 
                     id='dishname'
@@ -48,6 +51,8 @@ class NewDish extends Component {
                     className='form-control' 
                     placeholder='Dish Name' 
                     />
+                    </Col>
+                    </Row>
                     {/* <Control.text
                     model='.dishimage'
                     id='dishimage'
@@ -55,6 +60,9 @@ class NewDish extends Component {
                     className='form-control'
                     placeholder='Dish Image'
                     /> */}
+                    <Row className='form-group'>
+                    <Col>
+                    <Label htmlFor='category'>Category</Label>
                     <Control.text
                     model='.category'
                     id='category'
@@ -62,6 +70,11 @@ class NewDish extends Component {
                     className='form-control'
                     placeholder='Category'
                     />
+                    </Col>
+                    </Row>
+                    <Row className='form-group'>
+                    <Col>
+                    <Label htmlFor='label'>Label</Label>
                     <Control.text
                     model='.label'
                     id='label'
@@ -69,6 +82,11 @@ class NewDish extends Component {
                     className='form-control'
                     placeholder='Label'
                     />
+                    </Col>
+                    </Row>
+                    <Row className='form-group'>
+                    <Col>
+                    <Label htmlFor='price'>Price</Label>
                     <Control.text
                     model='.price'
                     id='price'
@@ -84,7 +102,12 @@ class NewDish extends Component {
                             required: 'Required',
                             isNumber: 'Must be a number'
                         }}
-                        /> 
+                        />
+                    </Col>
+                    </Row>
+                    <Row className='form-group'>
+                    <Col>
+                    <Label htmlFor='description'>Description</Label>
                     <Control.textarea
                     model='.description'
                     id='description'
@@ -92,9 +115,15 @@ class NewDish extends Component {
                     className='form-control'
                     placeholder='description'
                     />
+                    </Col>
+                    </Row>
+                    <Row className='form-group'>
+                    <Col>
                     <Button type='submit'>
                         Add Dish
                     </Button>
+                    </Col>
+                    </Row>
                 </LocalForm>
             </div>
         )
