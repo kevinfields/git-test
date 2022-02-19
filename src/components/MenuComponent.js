@@ -1,6 +1,7 @@
 import React from 'react';
-import {Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import {Card, CardImg, CardImgOverlay, CardTitle, CardSubtitle, Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import toPrice from '../functions/toPrice';
 import {Loading} from './LoadingComponent'
 import { baseUrl } from '../shared/baseUrl';
 
@@ -11,6 +12,7 @@ function RenderMenuItem({dish, onClick}){
         <CardImg width='100%' src={baseUrl + dish.image} alt={dish.name} />
         <CardImgOverlay>
             <CardTitle>{dish.name}</CardTitle>
+            <CardSubtitle>{toPrice(dish.price)}</CardSubtitle>
         </CardImgOverlay>
         </Link >
         </Card>
