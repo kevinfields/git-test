@@ -53,9 +53,9 @@ class Contact extends Component {
                             <i className="fa fa-envelope"></i>: <a href="mailto:confusion@food.net">confusion@food.net</a>
                             </address>
                     </div>
-                    <div className="col-12 col-sm-6 offset-sm-1">
+                    {/* <div className="col-12 col-sm-6 offset-sm-1">
                         <h5>Map of our Location</h5>
-                    </div>
+                    </div> */}
                     <div className="col-12 col-sm-11 offset-sm-1">
                         <div className="btn-group" role="group">
                             <a role="button" className="btn btn-primary" href="tel:+85212345678"><i className="fa fa-phone"></i> Call</a>

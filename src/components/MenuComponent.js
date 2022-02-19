@@ -11,8 +11,8 @@ function RenderMenuItem({dish, onClick}){
         <Link to={`/menu/${dish.id}`}>
         <CardImg width='100%' src={baseUrl + dish.image} alt={dish.name} />
         <CardImgOverlay>
-            <CardTitle>{dish.name}</CardTitle>
-            <CardSubtitle>{toPrice(dish.price)}</CardSubtitle>
+            <CardTitle className='dish-title'>{dish.name}</CardTitle>
+            <CardSubtitle className='dish-price'>{toPrice(dish.price)}</CardSubtitle>
         </CardImgOverlay>
         </Link >
         </Card>

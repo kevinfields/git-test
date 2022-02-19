@@ -263,7 +263,6 @@ export const postFeedback = (feedback) => () => {
 
 export const postDish = (dishData) => (dispatch) => {
 
-    console.log('dishData: ' + dishData)
     return fetch(baseUrl + 'dishes', {
         method: "POST",
         body: JSON.stringify(dishData),
@@ -286,15 +285,27 @@ export const postDish = (dishData) => (dispatch) => {
       })
     .then(response => response.json())
     .then(response => dispatch(addDish(response)))
+    .then(alert('Your dish has been posted!'))
     .catch(error =>  { 
         console.log('Dish ', error.message); 
         alert('Your dish could not be posted\nError: ' + error.message); 
     });
+    
 }
 
 //TO DO : EDIT DISH, MAYBE EDIT LEADERS, AND EDIT COMMENTS
 
 // export const editDish = (newData) => (dispatch) => {
-
+//     console.log('newData entered: ' + newData)
+//     return fetch(baseUrl + 'dishes/0', {
+//         method: 'PATCH',
+//         body: JSON.stringify({
+//             name: 'Utah Pizza',
+//         }),
+//         headers: {
+//           'Content-type': 'application/json; charset=UTF-8',
+//         },
+//     }).then((response) => response.json())
+//     .then((json) => console.log(json));
 // }
 

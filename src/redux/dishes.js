@@ -18,7 +18,6 @@ export const Dishes = (state = {
         case ActionTypes.ADD_DISH:
             var dish = action.payload;
             return { ...state, dishes: state.dishes.concat(dish)};
-            
         default:
             return state;
     }
