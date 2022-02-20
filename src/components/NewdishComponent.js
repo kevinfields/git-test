@@ -40,6 +40,7 @@ class NewDish extends Component {
     render() {
         return (
             <div id='form-container' className='col-12 col-md-5'>
+                <h3 id='dish-form-header'>New Dish Form</h3>
                 <LocalForm onSubmit={(details) => this.handleSubmit(details)}>
                     <Row className='form-group'>
                     <Col>
@@ -49,7 +50,7 @@ class NewDish extends Component {
                     id='dishname'
                     name='dishname'
                     className='form-control' 
-                    placeholder='Dish Name' 
+                    placeholder='Dish Name'
                     />
                     </Col>
                     </Row>
@@ -113,7 +114,7 @@ class NewDish extends Component {
                     id='description'
                     name='description'
                     className='form-control'
-                    placeholder='description'
+                    placeholder='Description'
                     />
                     </Col>
                     </Row>

@@ -63,3 +63,17 @@ address{
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
+
+#form-container {
+    position: relative;
+    left: 28%;
+    border: 1px solid #9575CD;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 3px 3px #7849c9;
+}
+
+#dish-form-header {
+    text-align: center;
+    margin: 5px;
+}
